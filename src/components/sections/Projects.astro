@@ -20,11 +20,11 @@ import { projects } from "@cv"
                 >
                   <h3 class="text-lg leading-none font-semibold">{name}</h3>
                 </a>
-                <p class="print:text-sm text-gray-600 font-medium">{description}</p>
+                <p class="print:text-sm text-gray-600 font-medium dark:text-gray-300 dark:print:text-gray-600">{description}</p>
               </header>
               <footer class="print:hidden flex flex-wrap gap-1">
                 {highlights.map((highlight) => {
-                  return <span class="py-1 px-2 bg-gray-100 rounded-md text-xs text-gray-600 font-medium">{highlight}</span>
+                  return <span class="py-1 px-2 bg-gray-100 rounded-md text-xs text-gray-600 font-medium dark:bg-gray-700 dark:text-gray-400 dark:print:text-gray-600">{highlight}</span>
                 })}
               </footer>
             </article>

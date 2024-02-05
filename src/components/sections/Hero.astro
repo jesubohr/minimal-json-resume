@@ -23,7 +23,7 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
         <span class="font-medium">{fullName[0]}</span>
         <span class="font-bold uppercase">{fullName[1]}</span>
       </h1>
-      <p class="max-w-lg text-lg text-gray-600 leading-snug text-balance font-medium print:text-base">
+      <p class="max-w-lg text-lg text-gray-600 dark:text-gray-300 dark:print:text-gray-600 leading-snug text-balance font-medium print:text-base">
         {label}
       </p>
       <div class="hidden print:flex flex-wrap gap-x-3 max-w-lg">
@@ -74,7 +74,7 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
           title="Open in Google Maps"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-600 hover:text-gray-800 hover:underline transition-colors"
+          class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:print:text-gray-600 hover:underline transition-colors"
           >{city}, {region}</a
         >
       </span>
@@ -85,7 +85,7 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
               <button
                 data-copy={email}
                 title="Copy Email"
-                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:border-gray-400 dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
                   <use xlink:href="/hero-icons.svg#email" />
@@ -98,7 +98,7 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
               <button
                 data-copy={phone}
                 title="Copy Phone"
-                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:border-gray-400 dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
                   <use xlink:href="/hero-icons.svg#phone" />
@@ -113,7 +113,7 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
                 title={network}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:border-gray-400 dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
                   <use

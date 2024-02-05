@@ -34,6 +34,13 @@ const hasTwitter = profiles.find((profile) => profile.network === "Twitter")
     <meta name="twitter:title" content={SITE_TITLE} />
     <meta name="twitter:description" content={SITE_DESCRIPTION} />
     <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- Detect dark mode -->
+    <script>
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
     <slot />

@@ -16,7 +16,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
 
 <footer
   id="footer"
-  class="fixed bottom-0 py-1 w-full bg-white border-t border-gray-300 text-gray-600 text-center z-10 print:hidden"
+  class="fixed bottom-0 py-1 w-full bg-white border-t border-gray-300 text-gray-600 text-center z-10 dark:bg-gray-800 dark:border-gray-500 dark:text-gray-100 print:hidden"
 >
   Press <Key>⌘ / Ctrl</Key> + <Key>K</Key> to open the command palette.
 </footer>
@@ -51,12 +51,15 @@ const profilesInfo = profiles.map(({ network, url }) => {
   const activationKey = navigator.userAgent.includes("Macintosh") ? "⌘" : "Ctrl"
 
   if (ninja != null) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      ninja.classList.add("dark")
+    }
     const dataInfo = ninja!.getAttribute("data-profiles-info") ?? "[]"
     const parsedInfo = JSON.parse(dataInfo)
     const profilesInfo = parsedInfo.map((info: any) => {
       return {
         ...info,
-        icon: `<img width="24px" style="margin-right: 8px;" src="https://simpleicons.org/icons/${info.icon}.svg" alt="${info.title}" />`,
+        icon: `<img width="24px" style="margin-right: 8px;" src=https://cdn.simpleicons.org/${info.icon}/000/fff" alt="${info.title}" />`,
         hotkey: `${activationKey} + ${info.id[0].toUpperCase()}`,
         handler: () => {
           window.open(info.url, "_blank")
@@ -80,7 +83,53 @@ const profilesInfo = profiles.map(({ network, url }) => {
           window.print()
         }
       },
-      ...profilesInfo
+      ...profilesInfo,
+      {
+        id: "Theme",
+        title: "Change Theme",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" />
+          <path d="M7 20h10" />
+          <path d="M9 16v4" />
+          <path d="M15 16v4" />
+        </svg>
+        `,
+        children: ["Light Theme", "Dark Theme"],
+        hotkey: "ctrl+T",
+        handler: () => {
+          // open menu if closed. Because you can open directly that menu from it's hotkey
+          ninja.open({ parent: "Theme" })
+          // if menu opened that prevent it from closing on select that action, no need if you don't have child actions
+          return { keepOpen: true }
+        }
+      },
+      {
+        id: "Light Theme",
+        title: "Change theme to Light",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+          <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+        </svg>
+        `,
+        parent: "Theme",
+        handler: () => {
+          document.documentElement.classList.remove("dark")
+          ninja.classList.remove("dark")
+        }
+      },
+      {
+        id: "Dark Theme",
+        title: "Change theme to Dark",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+        </svg>
+        `,
+        parent: "Theme",
+        handler: () => {
+          document.documentElement.classList.add("dark")
+          ninja.classList.add("dark")
+        }
+      }
     ]
   }
 </script>

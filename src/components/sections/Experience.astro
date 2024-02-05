@@ -42,10 +42,10 @@ const getMonthRange = (startDate: string, endDate: string) => {
                     )}
                     <h4 class="text-lg print:text-sm">{position}</h4>
                   </div>
-                  <time class="text-gray-500">{range}</time>
+                  <time class="text-gray-500 dark:text-gray-300 dark:print:text-gray-500">{range}</time>
                 </header>
-                {summary && <p class="print:text-sm text-gray-500">{summary}</p>}
-                <ul class="list-disc list-inside print:text-sm text-gray-600">
+                {summary && <p class="print:text-sm text-gray-600 dark:text-gray-300 dark:print:text-gray-600">{summary}</p>}
+                <ul class="list-disc list-inside print:text-sm text-gray-600 dark:text-gray-300 dark:print:text-gray-600">
                   {highlights.map((highlight) => (
                     <li>{highlight}</li>
                   ))}
