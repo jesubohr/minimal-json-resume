@@ -3,69 +3,130 @@ import Section from "@/components/Section.astro"
 import { basics } from "@cv"
 const { name, location, label, email, phone, profiles, image } = basics
 const { city, region, countryCode } = location
+
+const fullName = name.split(" ")
+const formattedPhone = phone.replace(/(\+\d{2})(\d{3})(\d{3})(\d{4})/, "$2-$3-$4")
+const formattedProfiles = profiles.map(({ url, network, username }) => {
+  const urlObject = new URL(url)
+  return {
+    network,
+    url,
+    text: `@${urlObject.hostname.replace("www.", "").replace(".com", "")}/${username}`,
+  }
+})
 ---
 
 <Section>
-  <div class="flex items-center flex-wrap gap-4 w-full">
+  <div class="flex items-start flex-wrap gap-4 w-full">
     <div class="grow flex flex-col gap-1">
-      <h1 class="text-3xl font-bold font-sans">{name}</h1>
-      <p class="max-w-md text-gray-600 leading-snug text-balance font-medium">{label}</p>
-      <span class="flex items-center gap-2 text-sm">
+      <h1 class="text-3xl font-sans print:text-2xl">
+        <span class="font-medium">{fullName[0]}</span>
+        <span class="font-bold uppercase">{fullName[1]}</span>
+      </h1>
+      <p class="max-w-lg text-lg text-gray-600 leading-snug text-balance font-medium print:text-base">
+        {label}
+      </p>
+      <div class="hidden print:flex flex-wrap gap-x-3 max-w-lg">
+        {
+          email && (
+            <a
+              href={`mailto:${email}`}
+              title={`Email ${name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-600"
+            >
+              {email}
+            </a>
+          )
+        }
+        {
+          phone && (
+            <a
+              href={`tel:${phone}`}
+              title={`Call ${name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-600"
+            >
+              {formattedPhone}
+            </a>
+          )
+        }
+        {
+          formattedProfiles.map(({ text, url, network }) => (
+            <a
+              href={url}
+              title={`Visit ${network}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-600"
+            >
+              {text}
+            </a>
+          ))
+        }
+      </div>
+      <span class="flex items-center gap-2 print:text-sm">
         <img src=`https://flagsapi.com/${countryCode}/flat/16.png` />
         <a
           href=`https://www.google.com/maps/place/${city}`
           title="Open in Google Maps"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-500 hover:text-gray-800 hover:underline transition-colors"
+          class="text-gray-600 hover:text-gray-800 hover:underline transition-colors"
           >{city}, {region}</a
         >
       </span>
-      <footer class="flex items-center gap-2">
-        {
-          email && (
-            <button
-              data-copy={email}
-              title="Copy Email"
-              class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
-                <use xlink:href="/hero-icons.svg#email" />
-              </svg>
-            </button>
-          )
-        }
-        {
-          phone && (
-            <button
-              data-copy={phone}
-              title="Copy Phone"
-              class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
-                <use xlink:href="/hero-icons.svg#phone" />
-              </svg>
-            </button>
-          )
-        }
-        {
-          profiles.map(({ network, url }) => (
-            <a
-              href={url}
-              title={network}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
-                <use xlink:href={`/hero-icons.svg#${network.toLowerCase()}`} />
-              </svg>
-            </a>
-          ))
-        }
+      <footer class="print:hidden">
+        <div class="flex items-center gap-2 mt-1">
+          {
+            email && (
+              <button
+                data-copy={email}
+                title="Copy Email"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+                  <use xlink:href="/hero-icons.svg#email" />
+                </svg>
+              </button>
+            )
+          }
+          {
+            phone && (
+              <button
+                data-copy={phone}
+                title="Copy Phone"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+                  <use xlink:href="/hero-icons.svg#phone" />
+                </svg>
+              </button>
+            )
+          }
+          {
+            profiles.map(({ network, url }) => (
+              <a
+                href={url}
+                title={network}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+                  <use
+                    xlink:href={`/hero-icons.svg#${network.toLowerCase()}`}
+                  />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
       </footer>
     </div>
-    <figure class="size-32">
+    <figure class="size-36 print:size-28">
       <img src={image} alt={name} class="aspect-square w-full rounded-md" />
     </figure>
   </div>
@@ -73,10 +134,9 @@ const { city, region, countryCode } = location
 
 <script>
   const copyButtons = document.querySelectorAll("[data-copy]")
-
-  copyButtons.forEach((button: HTMLButtonElement) => {
+  copyButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      copyToClipboard(button.dataset.copy)
+      copyToClipboard((button as HTMLButtonElement).dataset.copy || "")
     })
   })
 
