@@ -9,23 +9,23 @@ import { projects } from "@cv"
       projects.map(({ name, url, description, highlights }) => {
         return (
           <li>
-            <article class="flex flex-col gap-2">
-              <header class="flex items-start justify-between">
+            <article class="flex flex-col gap-2 p-4 h-full border border-gray-400 rounded-lg print:p-2">
+              <header class="grow flex flex-col gap-1.5">
                 <a
                   href={url}
                   title={`Ver el proyecto ${name}`}
-                  class="relative after:contents-[''] after:absolute after:block after:w-full after:border-2 after:border-gray-800 after:left-1/2 after:scale-x-0 after:origin-center hover:after:left-0 hover:after:scale-x-100 transition-transform ease-in-out"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="relative w-fit after:contents-[''] after:absolute after:left-1/2 after:w-0 after:h-0.5 after:bg-gray-800 hover:after:w-full hover:after:left-0 after:transition-all print:underline print:underline-offset-2"
                 >
-                  <h3 class="text-lg font-semibold">{name}</h3>
+                  <h3 class="text-lg leading-none font-semibold">{name}</h3>
                 </a>
+                <p class="print:text-sm text-gray-600 font-medium">{description}</p>
               </header>
-              <p class="text-gray-500 text-balance">{description}</p>
-              <footer>
-                <ul>
-                  {highlights.map((highlight) => {
-                    return <li class="text-gray-500">{highlight}</li>
-                  })}
-                </ul>
+              <footer class="print:hidden flex flex-wrap gap-1">
+                {highlights.map((highlight) => {
+                  return <span class="py-1 px-2 bg-gray-100 rounded-md text-xs text-gray-600 font-medium">{highlight}</span>
+                })}
               </footer>
             </article>
           </li>
