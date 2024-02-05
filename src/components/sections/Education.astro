@@ -6,7 +6,7 @@ import { education } from "@cv"
 <Section title="Education">
   <ul class="flex flex-col gap-5">
     {
-      education.map(({ institution, area, startDate, endDate }) => {
+      education.map(({ institution, url, area, startDate, endDate }) => {
         const startYear = new Date(startDate).getUTCFullYear()
         const endYear =
           endDate != null ? new Date(endDate).getUTCFullYear() : "Present"
@@ -15,8 +15,21 @@ import { education } from "@cv"
             <article class="flex flex-col gap-2">
               <header class="flex items-start justify-between">
                 <div>
-                  <h3 class="text-lg font-semibold">{institution}</h3>
-                  <h4 class="text-sm">{area}</h4>
+                  {url ? (
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-lg font-sans font-semibold hover:underline"
+                    >
+                      {institution}
+                    </a>
+                  ) : (
+                    <h3 class="text-lg font-sans font-semibold">
+                      {institution}
+                    </h3>
+                  )}
+                  <h4 class="print:text-sm text-gray-500">{area}</h4>
                 </div>
                 <time class="text-gray-500">
                   {startYear} - {endYear}
