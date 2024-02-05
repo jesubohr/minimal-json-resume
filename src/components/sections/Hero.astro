@@ -1,17 +1,21 @@
 ---
 import Section from "@/components/Section.astro"
 import { basics } from "@cv"
-const { name, location, label, email, phone, profiles, image } = basics
+const { name, location, label, email, phone, url, profiles, image } = basics
 const { city, region, countryCode } = location
 
 const fullName = name.split(" ")
-const formattedPhone = phone.replace(/(\+\d{2})(\d{3})(\d{3})(\d{4})/, "$2-$3-$4")
+const formattedPhone =
+  phone && phone.replace(/(\+\d{2})(\d{3})(\d{3})(\d{4})/, "$2-$3-$4")
+const formattedUrl = url && new URL(url).hostname
 const formattedProfiles = profiles.map(({ url, network, username }) => {
   const urlObject = new URL(url)
   return {
     network,
     url,
-    text: `@${urlObject.hostname.replace("www.", "").replace(".com", "")}/${username}`,
+    text: `${urlObject.hostname
+      .replace("www.", "")
+      .replace(".com", "")}/${username}`
   }
 })
 ---
@@ -23,7 +27,9 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
         <span class="font-medium">{fullName[0]}</span>
         <span class="font-bold uppercase">{fullName[1]}</span>
       </h1>
-      <p class="max-w-lg text-lg text-gray-600 dark:text-gray-300 dark:print:text-gray-600 leading-snug text-balance font-medium print:text-base">
+      <p
+        class="max-w-lg text-lg text-gray-600 dark:text-gray-300 dark:print:text-gray-600 leading-snug font-medium print:text-base"
+      >
         {label}
       </p>
       <div class="hidden print:flex flex-wrap gap-x-3 max-w-lg">
@@ -37,6 +43,19 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
               class="text-sm text-gray-600"
             >
               {email}
+            </a>
+          )
+        }
+        {
+          url && (
+            <a
+              href={url}
+              title={`Visit ${name}'s website`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-600"
+            >
+              {formattedUrl}
             </a>
           )
         }
@@ -91,6 +110,21 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
                   <use xlink:href="/hero-icons.svg#email" />
                 </svg>
               </button>
+            )
+          }
+          {
+            url && (
+              <a
+                href={url}
+                title={`Visit ${name}'s website`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:border-gray-400 dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+                  <use xlink:href="/hero-icons.svg#world" />
+                </svg>
+              </a>
             )
           }
           {
