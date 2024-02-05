@@ -1,32 +1,60 @@
 ---
 import Section from "@/components/Section.astro"
 import { work } from "@cv"
+
+const getYear = (date: string) => {
+  return new Date(date).getUTCFullYear().toString()
+}
+const getMonthRange = (startDate: string, endDate: string) => {
+  return new Intl.DateTimeFormat(`en-US`, {
+    month: "short"
+  }).formatRange(new Date(startDate), new Date(endDate))
+}
 ---
 
 <Section title="Experience">
   <ul class="flex flex-col gap-5">
     {
-      work.map(({ name, position, summary, startDate, endDate }) => {
-        const startYear = new Date(startDate).getUTCFullYear()
-        const endYear =
-          endDate != null ? new Date(endDate).getUTCFullYear() : "Present"
-        return (
-          <li>
-            <article class="flex flex-col gap-2">
-              <header class="flex items-start justify-between">
-                <div>
-                  <h3 class="text-lg font-semibold">{name}</h3>
-                  <h4 class="text-sm">{position}</h4>
-                </div>
-                <time class="text-gray-500">
-                  {startYear} - {endYear}
-                </time>
-              </header>
-              <p class="text-gray-500">{summary}</p>
-            </article>
-          </li>
-        )
-      })
+      work.map(
+        ({ name, position, url, summary, highlights, startDate, endDate }) => {
+          const startYear = getYear(startDate)
+          const endYear = endDate != null ? getYear(endDate) : "Present"
+          const range =
+            startYear === endYear
+              ? `${getMonthRange(startDate, endDate)}`
+              : `${startYear} - ${endYear}`
+          return (
+            <li>
+              <article class="flex flex-col gap-2">
+                <header class="flex items-start justify-between">
+                  <div>
+                    {url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-xl font-sans font-semibold hover:underline print:text-lg"
+                      >
+                        {name}
+                      </a>
+                    ) : (
+                      <h3 class="text-xl font-sans font-semibold print:text-lg">{name}</h3>
+                    )}
+                    <h4 class="text-lg print:text-sm">{position}</h4>
+                  </div>
+                  <time class="text-gray-500">{range}</time>
+                </header>
+                {summary && <p class="print:text-sm text-gray-500">{summary}</p>}
+                <ul class="list-disc list-inside print:text-sm text-gray-600">
+                  {highlights.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              </article>
+            </li>
+          )
+        }
+      )
     }
   </ul>
 </Section>
