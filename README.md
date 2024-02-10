@@ -1,8 +1,8 @@
 <h1 align="center">
-  Minimalist Portfolio Template
+  Minimalist Resume Template
 </h1>
 
-A minimalist portfolio template for developers, based on the [Minimalist Portfolio Project by midudev](https://github.com/midudev/minimalist-portfolio-json). It allows you to generate a portfolio from a single JSON file. Built with Astro and Tailwind CSS.
+A minimalist resume template for developers, based on the [Minimalist Portfolio Project by midudev](https://github.com/midudev/minimalist-portfolio-json). It allows you to generate a resume from a single JSON file. Built with Astro and Tailwind CSS.
 
 ## ✨ Features
 
