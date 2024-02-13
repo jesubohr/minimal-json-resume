@@ -34,6 +34,19 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
       </p>
       <div class="hidden print:flex flex-wrap gap-x-3 max-w-lg">
         {
+          phone && (
+            <a
+              href={`tel:${phone}`}
+              title={`Call ${name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-600"
+            >
+              {formattedPhone}
+            </a>
+          )
+        }
+        {
           email && (
             <a
               href={`mailto:${email}`}
@@ -56,19 +69,6 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
               class="text-sm text-gray-600"
             >
               {formattedUrl}
-            </a>
-          )
-        }
-        {
-          phone && (
-            <a
-              href={`tel:${phone}`}
-              title={`Call ${name}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-gray-600"
-            >
-              {formattedPhone}
             </a>
           )
         }
@@ -100,6 +100,19 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
       <footer class="print:hidden">
         <div class="flex items-center gap-2 mt-1">
           {
+            phone && (
+              <button
+                data-copy={phone}
+                title="Copy Phone"
+                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:border-gray-400 dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+                  <use xlink:href="/hero-icons.svg#phone" />
+                </svg>
+              </button>
+            )
+          }
+          {
             email && (
               <button
                 data-copy={email}
@@ -125,19 +138,6 @@ const formattedProfiles = profiles.map(({ url, network, username }) => {
                   <use xlink:href="/hero-icons.svg#world" />
                 </svg>
               </a>
-            )
-          }
-          {
-            phone && (
-              <button
-                data-copy={phone}
-                title="Copy Phone"
-                class="p-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors dark:border-gray-400 dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
-                  <use xlink:href="/hero-icons.svg#phone" />
-                </svg>
-              </button>
             )
           }
           {
