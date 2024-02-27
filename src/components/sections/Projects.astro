@@ -9,14 +9,14 @@ import { projects } from "@cv"
       projects.map(({ name, url, description, highlights }) => {
         return (
           <li>
-            <article class="flex flex-col gap-2 p-4 h-full border border-gray-400 rounded-lg print:p-2">
+            <article class="flex flex-col gap-2 py-2 h-full rounded-lg print:py-1">
               <header class="grow flex flex-col gap-1.5">
                 <a
                   href={url}
                   title={`Ver el proyecto ${name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="relative w-fit after:contents-[''] after:absolute after:left-1/2 after:w-0 after:h-0.5 after:bg-gray-800 hover:after:w-full hover:after:left-0 after:transition-all print:underline print:underline-offset-2"
+                  class="relative w-fit after:contents-[''] after:absolute after:left-1/2 after:w-0 after:h-0.5 after:bg-gray-800 dark:after:bg-white hover:after:w-full hover:after:left-0 after:transition-all print:underline print:underline-offset-2"
                 >
                   <h3 class="text-lg leading-none font-semibold">{name}</h3>
                 </a>
@@ -39,6 +39,6 @@ import { projects } from "@cv"
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    gap: 1rem 2rem;
   }
 </style>
