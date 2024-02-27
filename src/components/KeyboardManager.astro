@@ -1,5 +1,5 @@
 ---
-import "hotkeypad/reset.css"
+// import "hotkeypad/reset.css"
 import "hotkeypad/index.css"
 import Key from "@/components/Key.astro"
 import { basics } from "@cv"
@@ -18,9 +18,12 @@ const profilesInfo = profiles.map(({ network, url }) => {
 
 <footer
   id="footer"
-  class="fixed bottom-0 py-1 w-full bg-white border-t border-gray-300 text-gray-600 text-center z-10 dark:bg-gray-800 dark:border-gray-500 dark:text-gray-100 print:hidden"
+  class="fixed bottom-0 py-1 w-full bg-white border-t border-gray-300 text-gray-600 text-center z-50 dark:bg-gray-800 dark:border-gray-500 dark:text-gray-100 print:hidden cursor-pointer"
 >
-  Press <Key>⌘ / Ctrl</Key> + <Key>K</Key> to open the command palette.
+  <span class="hidden sm:block">
+    Press <Key>⌘ / Ctrl</Key> + <Key>K</Key> to open the command palette.
+  </span>
+  <span class="block sm:hidden">Press <Key>here</Key> to open the command palette.</span>
 </footer>
 
 <div id="hotkeypad" data-profiles-info={JSON.stringify(profilesInfo)}></div>
@@ -43,6 +46,23 @@ const profilesInfo = profiles.map(({ network, url }) => {
     animation-range: entry 100% cover 20%;
   }
 </style>
+
+<script>
+  const footer = document.getElementById("footer")!
+  footer.addEventListener("click", () => {
+    document.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "k",
+        code: "KeyK",
+        keyCode: 75,
+        ctrlKey: true,
+        metaKey: true,
+        shiftKey: false,
+        altKey: false
+      })
+    )
+  })
+</script>
 
 <script>
   type ProfileInfo = {
