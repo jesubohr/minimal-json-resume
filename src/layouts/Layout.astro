@@ -35,15 +35,26 @@ const hasTwitter = profiles.find((profile) => profile.network === "Twitter")
     <meta name="twitter:description" content={SITE_DESCRIPTION} />
     <meta name="twitter:image" content="/og-image.jpg" />
 
+    <!-- Styles -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/fontsource" />
+    <style>
+      /* manrope-latin-wght-normal */
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-display: swap;
+        font-weight: 200 800;
+        src: url(https://cdn.jsdelivr.net/fontsource/fonts/manrope:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+        unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+      }
+    </style>
+
     <!-- Detect dark mode -->
     <script>
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark')
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark")
       }
     </script>
-
-    <!-- HTML2PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
     <slot />
@@ -52,14 +63,8 @@ const hasTwitter = profiles.find((profile) => profile.network === "Twitter")
 
 <style is:global>
   html {
-    font-family:
-      Menlo,
-      Monaco,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      monospace;
-    letter-spacing: -0.025rem;
+    font-family: "Roboto Mono", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }
   p {
     text-wrap: pretty;
