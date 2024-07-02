@@ -1,15 +1,17 @@
 ---
 import Section from "@/components/Section.astro"
 import { education } from "@cv"
+
+const getDateYear = (date: string) => new Date(date).getUTCFullYear()
 ---
 
 <Section title="Education">
-  <ul class="flex flex-col gap-5">
+  <ul class="flex flex-col gap-5 print:gap-1">
     {
       education.map(({ institution, url, area, startDate, endDate }) => {
-        const startYear = new Date(startDate).getUTCFullYear()
-        const endYear =
-          endDate != null ? new Date(endDate).getUTCFullYear() : "Present"
+        const startYear = getDateYear(startDate)
+        const endYear = endDate != null ? getDateYear(endDate) : "Presente"
+        const range = `${startYear} - ${endYear}`
         return (
           <li>
             <article class="flex flex-col gap-2">
@@ -29,10 +31,12 @@ import { education } from "@cv"
                       {institution}
                     </h3>
                   )}
-                  <h4 class="print:text-sm text-gray-500 dark:text-gray-300 dark:print:text-gray-500">{area}</h4>
+                  <h4 class="text-gray-500 dark:text-gray-300 dark:print:text-gray-500">
+                    {area}
+                  </h4>
                 </div>
                 <time class="text-gray-500 dark:text-gray-300 dark:print:text-gray-500">
-                  {startYear} - {endYear}
+                  {range}
                 </time>
               </header>
             </article>

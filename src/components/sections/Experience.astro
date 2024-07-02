@@ -1,31 +1,24 @@
 ---
+import { getRangeDateWithPresent } from "@/lib/dates"
 import Section from "@/components/Section.astro"
 import { work } from "@cv"
 
-const getYear = (date: string) => {
-  return new Date(date).getUTCFullYear().toString()
-}
-const getMonthRange = (startDate: string, endDate: string) => {
-  return new Intl.DateTimeFormat(`en-US`, {
-    month: "short"
-  }).formatRange(new Date(startDate), new Date(endDate))
-}
+const sortedWork = work.toSorted((a, b) => {
+  const dateA = new Date(a.startDate)
+  const dateB = new Date(b.startDate)
+  return dateB.getTime() - dateA.getTime()
+})
 ---
 
 <Section title="Experience">
-  <ul class="flex flex-col gap-5">
+  <ul class="flex flex-col gap-5 print:gap-5">
     {
-      work.map(
+      sortedWork.map(
         ({ name, position, url, summary, highlights, startDate, endDate }) => {
-          const startYear = getYear(startDate)
-          const endYear = endDate != null ? getYear(endDate) : "Present"
-          const range =
-            startYear === endYear
-              ? `${getMonthRange(startDate, endDate)}`
-              : `${startYear} - ${endYear}`
+          const range = getRangeDateWithPresent(startDate, endDate)
           return (
             <li>
-              <article class="flex flex-col gap-2">
+              <article class="flex flex-col gap-4">
                 <header class="flex items-start justify-between">
                   <div>
                     {url ? (
@@ -33,19 +26,25 @@ const getMonthRange = (startDate: string, endDate: string) => {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-xl font-sans font-semibold hover:underline print:text-lg"
+                        class="text-xl print:text-lg font-sans font-semibold hover:underline"
                       >
                         {name}
                       </a>
                     ) : (
-                      <h3 class="text-xl font-sans font-semibold print:text-lg">{name}</h3>
+                      <h3 class="text-xl print:text-lg font-sans font-semibold">
+                        {name}
+                      </h3>
                     )}
-                    <h4 class="text-lg print:text-sm">{position}</h4>
+                    <h4 class="text-lg italic print:text-base">{position}</h4>
                   </div>
-                  <time class="text-gray-500 dark:text-gray-300 dark:print:text-gray-500">{range}</time>
+                  <time class="text-gray-500 dark:text-gray-300 dark:print:text-gray-500">
+                    {range}
+                  </time>
                 </header>
-                {summary && <p class="print:text-sm text-gray-600 dark:text-gray-300 dark:print:text-gray-600">{summary}</p>}
-                <ul class="list-disc list-inside print:text-sm text-gray-600 dark:text-gray-300 dark:print:text-gray-600">
+                {summary && (
+                  <div class="text-gray-600 leading-relaxed dark:text-gray-300 dark:print:text-gray-600" set:html={summary}></div>
+                )}
+                <ul class="list-inside text-gray-600 dark:text-gray-300 dark:print:text-gray-600">
                   {highlights.map((highlight) => (
                     <li>{highlight}</li>
                   ))}
@@ -58,3 +57,9 @@ const getMonthRange = (startDate: string, endDate: string) => {
     }
   </ul>
 </Section>
+
+<style>
+  .list-inside > li::marker {
+    content: "- ";
+  }
+</style>

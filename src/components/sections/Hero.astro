@@ -6,98 +6,98 @@ const { city, region, countryCode } = location
 
 const fullName = name.split(" ")
 const formattedPhone =
-  phone && phone.replace(/(\+\d{2})(\d{3})(\d{3})(\d{4})/, "$2-$3-$4")
+  phone && phone.replace(/(\+\d{2})(\d{3})(\d{3})(\d{4})/, "$1 $2-$3-$4")
 const formattedUrl = url && new URL(url).hostname
-const formattedProfiles = profiles.map(({ url, network, username }) => {
-  const urlObject = new URL(url)
-  return {
-    network,
-    url,
-    text: `${urlObject.hostname
-      .replace("www.", "")
-      .replace(".com", "")}/${username}`
-  }
-})
 ---
 
 <Section>
   <div class="flex items-start flex-wrap gap-4 w-full">
-    <div class="grow flex flex-col gap-1">
+    <div class="grow flex flex-col">
       <h1 class="text-3xl font-sans print:text-2xl">
         <span class="font-medium">{fullName[0]}</span>
-        <span class="font-bold uppercase">{fullName[1]}</span>
+        <span class="font-medium">{fullName[1]}</span>
+        <span class="font-medium">{fullName[2]}</span>
       </h1>
       <p
-        class="max-w-lg text-lg text-gray-600 dark:text-gray-300 dark:print:text-gray-600 leading-snug font-medium print:text-base"
+        class="flex items-center gap-4 max-w-lg text-xl text-gray-600 dark:text-gray-300 dark:print:text-gray-700 leading-snug tracking-tight font-medium"
       >
-        {label}
+        <span>{label}</span>
+        <span class="flex items-center gap-2 text-base">
+          <img src=`https://flagsapi.com/${countryCode}/flat/24.png` />
+          {
+            city && (
+              <a
+                href={`https://www.google.com/maps/place/${city}`}
+                title="Open in Google Maps"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:print:text-gray-600 hover:underline transition-colors"
+              >
+                {city}, {region}
+              </a>
+            )
+          }
+        </span>
       </p>
-      <div class="hidden print:flex flex-wrap gap-x-3 max-w-lg">
-        {
-          phone && (
-            <a
-              href={`tel:${phone}`}
-              title={`Call ${name}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-gray-600"
-            >
-              {formattedPhone}
-            </a>
-          )
-        }
-        {
-          email && (
-            <a
-              href={`mailto:${email}`}
-              title={`Email ${name}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-gray-600"
-            >
-              {email}
-            </a>
-          )
-        }
-        {
-          url && (
-            <a
-              href={url}
-              title={`Visit ${name}'s website`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-gray-600"
-            >
-              {formattedUrl}
-            </a>
-          )
-        }
-        {
-          formattedProfiles.map(({ text, url, network }) => (
-            <a
-              href={url}
-              title={`Visit ${network}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-gray-600"
-            >
-              {text}
-            </a>
-          ))
-        }
+      <div class="hidden print:flex flex-wrap gap-x-16 mt-2 mb-1.5 max-w-lg">
+        <div class="flex flex-col gap-0.5">
+          {
+            phone && (
+              <a
+                href={`tel:${phone}`}
+                title={`Call ${name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="shrink-0 text-gray-600"
+              >
+                {formattedPhone}
+              </a>
+            )
+          }
+          {
+            email && (
+              <a
+                href={`mailto:${email}`}
+                title={`Email ${name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600"
+              >
+                {email}
+              </a>
+            )
+          }
+          {
+            url && (
+              <a
+                href={url}
+                title={`Visit ${name}'s website`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600"
+              >
+                {formattedUrl}
+              </a>
+            )
+          }
+        </div>
+        <div class="flex flex-col gap-0.5">
+          {
+            profiles.map(({ url, network }) => (
+              <a
+                href={url}
+                title={`Visit ${network}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 print:underline"
+              >
+                {network}
+              </a>
+            ))
+          }
+        </div>
       </div>
-      <span class="flex items-center gap-2 print:text-sm">
-        <img src=`https://flagsapi.com/${countryCode}/flat/16.png` />
-        <a
-          href=`https://www.google.com/maps/place/${city}`
-          title="Open in Google Maps"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:print:text-gray-600 hover:underline transition-colors"
-          >{city}, {region}</a
-        >
-      </span>
-      <footer class="print:hidden">
+      <footer class="mt-2 print:hidden">
         <div class="flex items-center gap-2 mt-1">
           {
             phone && (
