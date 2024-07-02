@@ -1,110 +1,145 @@
 {
   "basics": {
-    "name": "John Doe",
-    "label": "Programmer",
-    "image": "",
-    "email": "john@gmail.com",
-    "phone": "(912) 555-4321",
-    "url": "https://johndoe.com",
-    "summary": "A summary of John Doe…",
+    "name": "Jesus Borrero",
+    "label": "Software Developer",
+    "image": "https://avatars.githubusercontent.com/u/39781228?v=4",
+    "email": "jesus.borrero.fernandez@gmail.com",
+    "phone": "",
+    "url": "https://me.jesubohrdev.com",
+    "summary": "Web software developer committed to building intelligent and user-friendly solutions for complex tasks. I approach every task with enthusiasm and a commitment to excellence, whether adding features or resolving bugs. Experienced in development tools and principles such as Git/GitHub, CI/CD, SOLID, etc.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "XXXXXXXXXX",
+      "postalCode": "XX XXXXX",
+      "city": "",
+      "countryCode": "CO",
+      "region": "Colombia"
     },
-    "profiles": [{
-      "network": "Twitter",
-      "username": "john",
-      "url": "https://twitter.com/john"
-    }]
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "jesubohr",
+        "url": "https://github.com/jesubohr"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "jesusborrero",
+        "url": "https://linkedin.com/in/jesusborrero"
+      },
+      {
+        "network": "Codepen",
+        "username": "jesubohr",
+        "url": "https://codepen.io/jesubohr/"
+      }
+    ]
   },
-  "work": [{
-    "name": "Company",
-    "position": "President",
-    "url": "https://company.com",
-    "startDate": "2013-01-01",
-    "endDate": "2014-01-01",
-    "summary": "Description…",
-    "highlights": [
-      "Started the company"
-    ]
-  }],
-  "volunteer": [{
-    "organization": "Organization",
-    "position": "Volunteer",
-    "url": "https://organization.com/",
-    "startDate": "2012-01-01",
-    "endDate": "2013-01-01",
-    "summary": "Description…",
-    "highlights": [
-      "Awarded 'Volunteer of the Month'"
-    ]
-  }],
-  "education": [{
-    "institution": "University",
-    "url": "https://institution.com/",
-    "area": "Software Development",
-    "studyType": "Bachelor",
-    "startDate": "2011-01-01",
-    "endDate": "2013-01-01",
-    "score": "4.0",
-    "courses": [
-      "DB1101 - Basic SQL"
-    ]
-  }],
-  "awards": [{
-    "title": "Award",
-    "date": "2014-11-01",
-    "awarder": "Company",
-    "summary": "There is no spoon."
-  }],
-  "certificates": [{
-    "name": "Certificate",
-    "date": "2021-11-07",
-    "issuer": "Company",
-    "url": "https://certificate.com"
-  }],
-  "publications": [{
-    "name": "Publication",
-    "publisher": "Company",
-    "releaseDate": "2014-10-01",
-    "url": "https://publication.com",
-    "summary": "Description…"
-  }],
-  "skills": [{
-    "name": "Web Development",
-    "level": "Master",
-    "keywords": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ]
-  }],
-  "languages": [{
-    "language": "English",
-    "fluency": "Native speaker"
-  }],
-  "interests": [{
-    "name": "Wildlife",
-    "keywords": [
-      "Ferrets",
-      "Unicorns"
-    ]
-  }],
-  "references": [{
-    "name": "Jane Doe",
-    "reference": "Reference…"
-  }],
-  "projects": [{
-    "name": "Project",
-    "startDate": "2019-01-01",
-    "endDate": "2021-01-01",
-    "description": "Description...",
-    "highlights": [
-      "Won award at AIHacks 2016"
-    ],
-    "url": "https://project.com/"
-  }]
+  "work": [
+    {
+      "name": "Freelance",
+      "position": "Frontend Developer",
+      "url": "",
+      "startDate": "2022-11-02",
+      "endDate": "2023-04-02",
+      "summary": "",
+      "highlights": [
+        "Development of web applications using technologies such as: HTML5, CSS3, JavaScript (ES6+), ReactJS, Astro, etc., for clients from different sectors.",
+        "Development of REST APIs using: Node.js, Express.js, OAuth, database design (MongoDB, SQLite), etc., using good web development and security practices.",
+        "Translating business and user requirements into functional software, ensuring alignment with project goals.",
+        "Performing testing and debugging to ensure a high quality user interface for the project."
+      ]
+    },
+    {
+      "name": "SIP Ingeniería",
+      "position": "Full Stack Developer",
+      "url": "https://www.linkedin.com/company/sipingenieria/",
+      "startDate": "2023-05-02",
+      "summary": "<strong>Financial auditing system for companies with help of AI tools</strong><br/>- Implementation of an automated notification system to alert users about critical events.<br/>- Implementation of two-factor authentication (2FA), to improve system security in user authorization.<br/>- Development of role-based permissions system to ensure user data security.<br/>- Implementation of Dropzone for secure uploading of important files.<br/><br/><strong>AI-based code review system</strong><br/>- Integration of GPT-4 API for analysis and generation of recommendations based on framework standards, architecture and/or conventions used in the company.<br/>- Increased code quality and adherence to best practices and standards by developers.<br/>- Reduced code review time by senior developers by 50%, enabling faster development cycles.<br/>- Project deployment using Docker, ensuring software scalability and portability.<br/>",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad del Norte",
+      "url": "https://uninorte.edu.co/",
+      "area": "Systems and Computer Engineering",
+      "studyType": "Bachelor",
+      "startDate": "2018-01-01",
+      "endDate": "2022-11-30",
+      "score": "3.96",
+      "courses": [
+        "DB1101 - Basic SQL"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "RESTful APIs",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "Auth",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "SQL/NoSQL",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "Docker",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "GIT",
+      "level": "Professional",
+      "keywords": []
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Jaime Giraldo Website",
+      "startDate": "2019-01-01",
+      "endDate": "2021-01-01",
+      "description": "Personal website for a client who wanted to promote his professional image by offering his consulting services and a blog to share his knowledge.",
+      "highlights": [],
+      "url": "https://jaimegiraldo.co/"
+    },
+    {
+      "name": "Dunor Boutique",
+      "startDate": "2019-01-01",
+      "endDate": "2021-01-01",
+      "description": "Online store selling suits and tailor-made garments for all special occasions, from weddings to degrees.",
+      "highlights": [],
+      "url": "https://dunor-boutique.vercel.app/"
+    },
+    {
+      "name": "HotKeyPad",
+      "startDate": "2023-02-01",
+      "endDate": "2023-02-01",
+      "description": "Lightweight and simple way to add keyboard shortcuts to your web application.",
+      "highlights": [],
+      "url": "https://github.com/jesubohr/hotkeypad/"
+    },
+    {
+      "name": "Minimal JSON Resume",
+      "startDate": "2019-01-01",
+      "endDate": "2021-01-01",
+      "description": "A minimalist resume configurable via a JSON file. It's a simple way to create a resume with a modern look.",
+      "highlights": [],
+      "url": "https://github.com/jesubohr/minimal-json-resume/"
+    }
+  ]
 }
