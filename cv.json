@@ -72,17 +72,32 @@
   ],
   "skills": [
     {
+      "name": "HTML5/CSS3",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "Javascript/Typescript",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
       "name": "Python",
       "level": "Professional",
       "keywords": []
     },
     {
-      "name": "RESTful APIs",
+      "name": "React",
       "level": "Professional",
       "keywords": []
     },
     {
-      "name": "Auth",
+      "name": "Vue",
+      "level": "Professional",
+      "keywords": []
+    },
+    {
+      "name": "REST APIs",
       "level": "Professional",
       "keywords": []
     },
@@ -92,12 +107,12 @@
       "keywords": []
     },
     {
-      "name": "Docker",
+      "name": "Git",
       "level": "Professional",
       "keywords": []
     },
     {
-      "name": "GIT",
+      "name": "Docker",
       "level": "Professional",
       "keywords": []
     }
